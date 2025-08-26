@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Outlwile Trading Enterprise</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e74c3c;
+            --accent-color: #f39c12;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --gradient-primary: linear-gradient(135deg, #2c3e50 0%, #4a6580 100%);
+            --gradient-secondary: linear-gradient(135deg, #e74c3c 0%, #f39c12 100%);
+        }
+
+        * {
+            transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+            color: var(--text-dark) !important;
+        }
+
+        .nav-link:hover {
+            color: var(--secondary-color) !important;
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            color: var(--secondary-color) !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--gradient-primary);
+            padding: 150px 0 80px;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"><animate attributeName="r" values="1;3;1" dur="3s" repeatCount="indefinite"/></circle><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.05)"><animate attributeName="r" values="1;2;1" dur="2s" repeatCount="indefinite"/></circle><circle cx="80" cy="30" r="1" fill="rgba(255,255,255,0.1)"><animate attributeName="r" values="1;2.5;1" dur="4s" repeatCount="indefinite"/></circle></svg>');
+        }
+
+        .page-header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* Service Cards */
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+            border: none;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .service-icon:hover {
+            transform: rotate(360deg);
+        }
+
+        .service-features {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+
+        .service-features li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        .btn-service {
+            background: var(--gradient-primary);
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            border-radius: 50px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+        }
+
+        .btn-service::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-service:hover::before {
+            left: 100%;
+        }
+
+        .btn-service:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Process Section */
+        .process-section {
+            background: #f8f9fa;
+            padding: 5rem 0;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .process-number {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin: 0 auto 1.5rem;
+            font-size: 1.5rem;
+        }
+
+        .process-step:hover .process-number {
+            transform: scale(1.1);
+        }
+
+        /* FAQ Section */
+        .accordion-button {
+            font-weight: 600;
+            padding: 1.5rem;
+            border: none;
+            box-shadow: none !important;
+        }
+
+        .accordion-button:not(.collapsed) {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .accordion-body {
+            padding: 1.5rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--gradient-secondary);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-link {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .page-header p {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-primary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"> <img src="assets/OutlwileEnterpriseslogo.png" alt="Logo" width="80" height="80" class="d-inline-block align-text-top"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <h1 class="fade-in-up">Our Services</h1>
+                <p class="fade-in-up">Comprehensive solutions for mining maintenance, transportation, supply services, and events management tailored to your business needs.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-4 fw-bold mb-3">What We Offer</h2>
+                    <p class="lead text-muted">Comprehensive solutions tailored to the mining industry and beyond</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3 class="fw-bold mb-3 text-center">Mining Maintenance Services</h3>
+                        <p>We specialize in providing comprehensive maintenance solutions tailored to the unique needs of the mining industry. Our team of experts ensures the smooth operation and longevity of mining equipment through proactive maintenance strategies and timely repairs.</p>
+                        <h5 class="fw-bold mt-4">Our Expertise Includes:</h5>
+                        <ul class="service-features">
+                            <li>Preventive maintenance programs</li>
+                            <li>Equipment repairs and overhauls</li>
+                            <li>Component replacement and upgrades</li>
+                            <li>Maintenance planning and scheduling</li>
+                            <li>Condition monitoring and diagnostics</li>
+                            <li>Emergency breakdown services</li>
+                        </ul>
+                        <a href="contact.html" class="btn-service mt-4">
+                            <i class="fas fa-arrow-right me-2"></i>Inquire About This Service
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h3 class="fw-bold mb-3 text-center">Transportation Services</h3>
+                        <p>Outlwile Trading Enterprise (Pty) Ltd offers reliable and efficient transportation services, catering to the diverse needs of our clients. Whether it's bulk materials or specialized cargo, we ensure safe and timely delivery to destinations nationwide.</p>
+                        <h5 class="fw-bold mt-4">Our Transportation Solutions:</h5>
+                        <ul class="service-features">
+                            <li>Bulk material transport</li>
+                            <li>Heavy equipment hauling</li>
+                            <li>Specialized cargo handling</li>
+                            <li>Nationwide logistics network</li>
+                            <li>Fleet maintenance management</li>
+                            <li>Customized transport solutions</li>
+                        </ul>
+                        <a href="contact.html" class="btn-service mt-4">
+                            <i class="fas fa-arrow-right me-2"></i>Inquire About This Service
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-boxes"></i>
+                        </div>
+                        <h3 class="fw-bold mb-3 text-center">Supplying Services</h3>
+                        <p>Our supplying services encompass a wide range of products tailored to meet the demands of various industries. From mining equipment to essential supplies, we source and deliver high-quality products with a focus on reliability and cost-effectiveness.</p>
+                        <h5 class="fw-bold mt-4">Our Supply Capabilities:</h5>
+                        <ul class="service-features">
+                            <li>Mining equipment and parts</li>
+                            <li>Industrial supplies and tools</li>
+                            <li>Safety equipment and PPE</li>
+                            <li>Office supplies and furniture</li>
+                            <li>Specialized industrial components</li>
+                            <li>Custom sourcing solutions</li>
+                        </ul>
+                        <a href="contact.html" class="btn-service mt-4">
+                            <i class="fas fa-arrow-right me-2"></i>Inquire About This Service
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h3 class="fw-bold mb-3 text-center">Events Management</h3>
+                        <p>With our expertise in events management, we take the stress out of organizing and executing successful events. From corporate functions to community gatherings, we handle every aspect with precision and professionalism, ensuring memorable experiences for all.</p>
+                        <h5 class="fw-bold mt-4">Our Event Services:</h5>
+                        <ul class="service-features">
+                            <li>Corporate event planning</li>
+                            <li>Conference and seminar management</li>
+                            <li>Community outreach programs</li>
+                            <li>Venue selection and setup</li>
+                            <li>Catering and hospitality services</li>
+                            <li>Post-event evaluation and reporting</li>
+                        </ul>
+                        <a href="contact.html" class="btn-service mt-4">
+                            <i class="fas fa-arrow-right me-2"></i>Inquire About This Service
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-4 fw-bold mb-3">Our Process</h2>
+                    <p class="lead text-muted">A structured approach to delivering exceptional results</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="process-step">
+                        <div class="process-number">1</div>
+                        <h4 class="fw-bold mb-3">Consultation</h4>
+                        <p class="text-muted">We begin by understanding your specific requirements, challenges, and objectives through detailed consultation.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="process-step">
+                        <div class="process-number">2</div>
+                        <h4 class="fw-bold mb-3">Planning</h4>
+                        <p class="text-muted">Our team develops a comprehensive plan tailored to your needs, including timelines, resources, and deliverables.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="process-step">
+                        <div class="process-number">3</div>
+                        <h4 class="fw-bold mb-3">Execution</h4>
+                        <p class="text-muted">We implement the plan with precision, maintaining clear communication and adhering to the highest quality standards.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="process-step">
+                        <div class="process-number">4</div>
+                        <h4 class="fw-bold mb-3">Evaluation</h4>
+                        <p class="text-muted">After project completion, we conduct thorough evaluations to ensure satisfaction and identify opportunities for improvement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-4 fw-bold mb-3">Why Choose Outlwile?</h2>
+                    <p class="lead text-muted">We deliver excellence across every aspect of our service</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card text-center">
+                        <div class="service-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Quality Certified</h5>
+                        <p class="text-muted">MIBCO accredited with adherence to industry standards and best practices.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card text-center">
+                        <div class="service-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Expert Team</h5>
+                        <p class="text-muted">Skilled professionals with years of industry experience and specialized training.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card text-center">
+                        <div class="service-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Safety First</h5>
+                        <p class="text-muted">Top-tier safety measures protecting your assets, personnel, and operations.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card text-center">
+                        <div class="service-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Fast Response</h5>
+                        <p class="text-muted">Quick turnaround times without compromising on quality or safety standards.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card text-center">
+                        <div class="service-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Partnership Approach</h5>
+                        <p class="text-muted">We build long-term relationships based on trust, reliability, and mutual success.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card text-center">
+                        <div class="service-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">24/7 Support</h5>
+                        <p class="text-muted">Round-the-clock assistance whenever you need it, including emergency services.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-4 fw-bold mb-3">Frequently Asked Questions</h2>
+                    <p class="lead text-muted">Find answers to common questions about our services</p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                    What industries do you primarily serve?
+                                </button>
+                            </h2>
+                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    While we specialize in serving the mining industry, our services extend to various sectors including construction, manufacturing, transportation, and corporate services. Our diverse expertise allows us to adapt our solutions to meet the unique needs of different industries.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                    What geographic areas do you cover?
+                                </button>
+                            </h2>
+                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    We are based in Postmasburg, Northern Cape Province, and primarily serve clients throughout South Africa. Our transportation and supply services can accommodate nationwide logistics, while our mining maintenance services are focused on the Northern Cape mining region.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                    Are you available for emergency services?
+                                </button>
+                            </h2>
+                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Yes, we offer 24/7 emergency support for critical maintenance issues and urgent transportation needs. Our team is equipped to respond quickly to minimize downtime and keep your operations running smoothly.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                    How do you ensure quality in your services?
+                                </button>
+                            </h2>
+                            <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    We maintain MIBCO accreditation and adhere to strict quality assurance protocols. Our team undergoes regular training, we use certified equipment and materials, and we implement thorough inspection processes to ensure every service meets the highest standards of excellence.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                    Can you handle large-scale projects?
+                                </button>
+                            </h2>
+                            <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Absolutely. We have experience managing large-scale projects for major mining companies, including Anglo American Sishen Iron Ore and Kolomela Mine. Our team is equipped to handle projects of various sizes and complexities, with the resources and expertise to ensure successful completion.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 text-center">
+                    <h2 class="display-4 fw-bold mb-4">Ready to Get Started?</h2>
+                    <p class="lead mb-5">Contact us today to discuss how Outlwile Trading Enterprise can meet your specific needs with our comprehensive services.</p>
+                    <a href="contact.html" class="btn btn-lg btn-light px-5 py-3 rounded-pill fw-bold">
+                        <i class="fas fa-paper-plane me-2"></i>Get In Touch
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+ <img src="assets/OutlwileEnterpriseslogo.png" alt="Logo" width="60" height="60" class="d-inline-block align-text-top">                    <p class="text-white-50">Innovation beyond boundaries. We transform ideas into reality with cutting-edge solutions and unwavering dedication to excellence.</p>
+                    <div class="d-flex gap-3 mt-3">
+                        <a href="#" class="text-white-50" style="font-size: 1.5rem;">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="text-white-50" style="font-size: 1.5rem;">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-white-50" style="font-size: 1.5rem;">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <h5 class="fw-bold mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="footer-link">Home</a></li>
+                        <li><a href="about.html" class="footer-link">About</a></li>
+                        <li><a href="services.html" class="footer-link">Services</a></li>
+                        <li><a href="portfolio.html" class="footer-link">Portfolio</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <h5 class="fw-bold mb-3">Services</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="services.html" class="footer-link">Mining Maintenance</a></li>
+                        <li><a href="services.html" class="footer-link">Transportation</a></li>
+                        <li><a href="services.html" class="footer-link">Supply Services</a></li>
+                        <li><a href="services.html" class="footer-link">Events Management</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="fw-bold mb-3">Contact Info</h5>
+                    <div class="mb-2">
+                        <i class="fas fa-user me-2"></i>
+                        <span class="text-white-50">Mirriam Fonang (Director)</span>
+                    </div>
+                    <div class="mb-2">
+                        <i class="fas fa-phone me-2"></i>
+                        <span class="text-white-50">078 692 1888</span>
+                    </div>
+                    <div class="mb-2">
+                        <i class="fas fa-envelope me-2"></i>
+                        <span class="text-white-50">mirriamfonang10@gmail.com</span>
+                    </div>
+                    <div class="mb-2">
+                        <i class="fas fa-map-marker-alt me-2"></i>
+                        <span class="text-white-50">7104 Pied Starling Street, Postdene Postmasburg, Northern Cape, South Africa, 8420</span>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: rgba(255,255,255,0.2);">
+            <div class="text-center">
+                <p class="mb-0 text-white-50">&copy; 2023 Outlwile Trading Enterprise. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>

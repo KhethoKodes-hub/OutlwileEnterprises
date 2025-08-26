@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outlwile Trading Enterprise - Mining Maintenance, Transportation & Supply Services</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link type="icon" href="assets/OutlwileEnterprises.png">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e74c3c;
+            --accent-color: #f39c12;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --gradient-primary: linear-gradient(135deg, #2c3e50 0%, #4a6580 100%);
+            --gradient-secondary: linear-gradient(135deg, #e74c3c 0%, #f39c12 100%);
+        }
+
+        * {
+            transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+            color: var(--text-dark) !important;
+        }
+
+        .nav-link:hover {
+            color: var(--secondary-color) !important;
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            color: var(--secondary-color) !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient-primary);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"><animate attributeName="r" values="1;3;1" dur="3s" repeatCount="indefinite"/></circle><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.05)"><animate attributeName="r" values="1;2;1" dur="2s" repeatCount="indefinite"/></circle><circle cx="80" cy="30" r="1" fill="rgba(255,255,255,0.1)"><animate attributeName="r" values="1;2.5;1" dur="4s" repeatCount="indefinite"/></circle></svg>');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2rem;
+        }
+
+        .btn-hero {
+            background: var(--gradient-secondary);
+            border: none;
+            padding: 15px 40px;
+            font-weight: 600;
+            border-radius: 50px;
+            color: white;
+            font-size: 1.1rem;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-hero:hover::before {
+            left: 100%;
+        }
+
+        .btn-hero:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Feature Cards */
+        .feature-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+            border: none;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .feature-icon:hover {
+            transform: rotate(360deg);
+        }
+
+        /* Stats Section */
+        .stats {
+            background: var(--gradient-secondary);
+            color: white;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            display: block;
+        }
+
+        .stat-item:hover .stat-number {
+            transform: scale(1.1);
+        }
+
+        /* Portfolio Section */
+        .portfolio-item {
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            height: 300px;
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(44, 62, 80, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.1);
+        }
+
+        /* Partners Section */
+        .partners-section {
+            background: #f8f9fa;
+        }
+
+        .partner-logo {
+            height: 80px;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .partner-logo:hover {
+            filter: grayscale(0);
+            opacity: 1;
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-link {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-primary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">  <img src="assets/OutlwileEnterpriseslogo.png" alt="Logo" width="80" height="80" class="d-inline-block align-text-top">
+</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8 hero-content">
+                    <h1 class="fade-in-up">Empowering Communities Through Excellence</h1>
+                    <p class="fade-in-up">Outlwile Trading Enterprise is a 100% black female-owned company specializing in mining maintenance, transportation, supply services, and events management. We're committed to excellence, innovation, and socio-economic development.</p>
+                    <a href="services.html" class="btn-hero fade-in-up">
+                        <i class="fas fa-conveyor-belt me-2"></i>Our Services
+                    </a>
+                    <a href="contact.html" class="btn-hero ms-3 fade-in-up" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px);">
+                        <i class="fas fa-envelope me-2"></i>Contact Us
+                    </a>
+                </div>
+                <div class="col-lg-4">
+                    <div class="text-center">
+                        <i class="fas fa-hard-hat" style="font-size: 15rem; color: rgba(255,255,255,0.1);"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="display-4 fw-bold mb-4">About Outlwile</h2>
+                    <p class="lead">Established in 2019, Outlwile Trading Enterprise was born from a vision to combat unemployment among skilled young black South African youth.</p>
+                    <p>We embrace a "Future Smart" approach, integrating sustainability into our operations. Our Sustainability Strategy aligns with global sustainability goals, including the UN Sustainable Development Goals.</p>
+                    <p>Situated in Postmasburg, Northern Cape Province, we proudly stand as a 100% black female-owned entity committed to excellence and innovation.</p>
+                    <a href="about.html" class="btn-hero mt-3">
+                        <i class="fas fa-info-circle me-2"></i>Learn More
+                    </a>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Mining Industry" class="img-fluid rounded-3 shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-4 fw-bold mb-3">Our Services</h2>
+                    <p class="lead text-muted">Comprehensive solutions tailored to the mining industry and beyond</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Mining Maintenance</h5>
+                        <p class="text-muted">Comprehensive maintenance solutions for mining equipment through proactive strategies and timely repairs.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Transportation</h5>
+                        <p class="text-muted">Reliable and efficient transportation services for bulk materials or specialized cargo nationwide.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-boxes"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Supply Services</h5>
+                        <p class="text-muted">Wide range of products tailored to meet the demands of various industries with reliability and cost-effectiveness.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Events Management</h5>
+                        <p class="text-muted">Professional organization and execution of corporate functions and community gatherings.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="feature-card h-100">
+                        <div class="feature-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3 class="fw-bold mb-3">Our Mission</h3>
+                        <p>To deliver unparalleled service excellence and reliability across all aspects of our operations. We prioritize providing quality services coupled with exceptional customer care, ensuring satisfaction for all stakeholders.</p>
+                        <p>We are dedicated to offering comprehensive services, striving to complete projects efficiently and within budget while upholding strict adherence to quality, health, and safety standards.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="feature-card h-100">
+                        <div class="feature-icon">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3 class="fw-bold mb-3">Our Vision</h3>
+                        <p>To be acknowledged as the foremost provider of Mining Maintenance Services, Transportation, Supplying Services, and Events Management solutions.</p>
+                        <p>We aspire to establish the benchmark for excellence within our industry, guided by our steadfast commitment to integrity, innovation, and customer satisfaction.</p>
+                        <p>Our aim is to become the hub of excellence, delivering services that catalyze positive transformations while addressing social challenges and uplifting communities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-4 fw-bold mb-3">Our Portfolio</h2>
+                    <p class="lead text-muted">Proudly serving major players in the mining industry</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="portfolio-item">
+                        <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Mine Site" class="portfolio-img">
+                        <div class="portfolio-overlay">
+                            <h4 class="text-white fw-bold">Anglo American Sishen Iron Ore</h4>
+                            <p class="text-white">Supplying and maintenance of Mine Tyres and Rims</p>
+                            <p class="text-white">Contact: Jan Koegelenberg (Project Manager) – 078 337 6073</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="portfolio-item">
+                        <img src="https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Mining Equipment" class="portfolio-img">
+                        <div class="portfolio-overlay">
+                            <h4 class="text-white fw-bold">Kolomela Mine</h4>
+                            <p class="text-white">Supplying of Assistant Artisans and General Workers for Mine Shutdowns</p>
+                            <p class="text-white">Contact: Patrick Mora (Supervisor DSO Engineering) – 060 980 9681</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="py-5 partners-section">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-4 fw-bold mb-3">Our Industry Partners</h2>
+                    <p class="lead text-muted">Collaborating with industry leaders</p>
+                </div>
+            </div>
+            <div class="row align-items-center justify-content-center g-5">
+                <div class="col-lg-3 col-md-4 col-6 text-center">
+                    <img src="https://via.placeholder.com/200x100/2c3e50/ffffff?text=Anglo+American" alt="Anglo American" class="img-fluid partner-logo">
+                </div>
+                <div class="col-lg-3 col-md-4 col-6 text-center">
+                    <img src="https://via.placeholder.com/200x100/2c3e50/ffffff?text=Kolomela+Mine" alt="Kolomela Mine" class="img-fluid partner-logo">
+                </div>
+                <div class="col-lg-3 col-md-4 col-6 text-center">
+                    <img src="https://via.placeholder.com/200x100/2c3e50/ffffff?text=Otraco" alt="Otraco" class="img-fluid partner-logo">
+                </div>
+                <div class="col-lg-3 col-md-4 col-6 text-center">
+                    <img src="https://via.placeholder.com/200x100/2c3e50/ffffff?text=MIBCO" alt="MIBCO" class="img-fluid partner-logo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <p class="mb-0">Black Female-Owned</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-item">
+                        <span class="stat-number">4+</span>
+                        <p class="mb-0">Years Experience</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-item">
+                        <span class="stat-number">5+</span>
+                        <p class="mb-0">Major Projects</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="stat-item">
+                        <span class="stat-number">24/7</span>
+                        <p class="mb-0">Support Available</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h2 class="display-5 fw-bold mb-3">Ready to Discuss Your Project?</h2>
+                    <p class="lead text-muted mb-4">Contact us today to learn how Outlwile Trading Enterprise can serve your mining, transportation, supply, or events management needs.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a href="contact.html" class="btn btn-lg" style="background: var(--gradient-primary); border: none; color: white; padding: 15px 40px; border-radius: 50px; font-weight: 600;">
+                        <i class="fas fa-arrow-right me-2"></i>Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+            <a class="navbar-brand" href="index.html">  <img src="assets/OutlwileEnterpriseslogo.png" alt="Logo" width="60" height="60" class="d-inline-block align-text-top">
+                    <p class="text-white-50">Innovation beyond boundaries. We transform ideas into reality with cutting-edge solutions and unwavering dedication to excellence.</p>
+                    <div class="d-flex gap-3 mt-3">
+                        <a href="#" class="text-white-50" style="font-size: 1.5rem;">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="text-white-50" style="font-size: 1.5rem;">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-white-50" style="font-size: 1.5rem;">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <h5 class="fw-bold mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="footer-link">Home</a></li>
+                        <li><a href="about.html" class="footer-link">About</a></li>
+                        <li><a href="services.html" class="footer-link">Services</a></li>
+                        <li><a href="portfolio.html" class="footer-link">Portfolio</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <h5 class="fw-bold mb-3">Services</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="services.html" class="footer-link">Mining Maintenance</a></li>
+                        <li><a href="services.html" class="footer-link">Transportation</a></li>
+                        <li><a href="services.html" class="footer-link">Supply Services</a></li>
+                        <li><a href="services.html" class="footer-link">Events Management</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="fw-bold mb-3">Contact Info</h5>
+                    <div class="mb-2">
+                        <i class="fas fa-user me-2"></i>
+                        <span class="text-white-50">Mirriam Fonang (Director)</span>
+                    </div>
+                    <div class="mb-2">
+                        <i class="fas fa-phone me-2"></i>
+                        <span class="text-white-50">078 692 1888</span>
+                    </div>
+                    <div class="mb-2">
+                        <i class="fas fa-envelope me-2"></i>
+                        <span class="text-white-50">mirriamfonang10@gmail.com</span>
+                    </div>
+                    <div class="mb-2">
+                        <i class="fas fa-map-marker-alt me-2"></i>
+                        <span class="text-white-50">7104 Pied Starling Street, Postdene Postmasburg, Northern Cape, Soouth Africa, 8420</span>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: rgba(255,255,255,0.2);">
+            <div class="text-center">
+                <p class="mb-0 text-white-50">&copy; 2023 Outlwile Trading Enterprise. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Counter animation
+        const counters = document.querySelectorAll('.stat-number');
+        const animateCounters = () => {
+            counters.forEach(counter => {
+                const target = counter.textContent.includes('%') ? 
+                    100 : parseInt(counter.textContent);
+                
+                if (typeof target === 'number' && !isNaN(target)) {
+                    const increment = target / 100;
+                    let current = 0;
+                    
+                    const updateCounter = () => {
+                        if (current < target) {
+                            current += increment;
+                            if (counter.textContent.includes('%')) {
+                                counter.textContent = Math.ceil(current) + '%';
+                            } else {
+                                counter.textContent = Math.ceil(current);
+                            }
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            counter.textContent = counter.textContent.includes('%') ? '100%' : target;
+                        }
+                    };
+                    updateCounter();
+                }
+            });
+        };
+
+        // Trigger animation when stats section is visible
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    observer.unobserve(entry.target);
+                }
+            });
+        });
+
+        const statsSection = document.querySelector('.stats');
+        if (statsSection) {
+            observer.observe(statsSection);
+        }
+    </script>
+</body>
+</html>

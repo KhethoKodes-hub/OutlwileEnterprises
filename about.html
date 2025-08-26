@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Outlwile Trading Enterprise</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e74c3c;
+            --accent-color: #f39c12;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --gradient-primary: linear-gradient(135deg, #2c3e50 0%, #4a6580 100%);
+            --gradient-secondary: linear-gradient(135deg, #e74c3c 0%, #f39c12 100%);
+        }
+
+        * {
+            transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            margin: 0 10px;
+            position: relative;
+            color: var(--text-dark) !important;
+        }
+
+        .nav-link:hover {
+            color: var(--secondary-color) !important;
+            transform: translateY(-2px);
+        }
+
+        .nav-link.active {
+            color: var(--secondary-color) !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        /* Page Header */
+        .page-header {
+            background: var(--gradient-primary);
+            padding: 150px 0 80px;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="rgba(255,255,255,0.1)"><animate attributeName="r" values="1;3;1" dur="3s" repeatCount="indefinite"/></circle><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.05)"><animate attributeName="r" values="1;2;1" dur="2s" repeatCount="indefinite"/></circle><circle cx="80" cy="30" r="1" fill="rgba(255,255,255,0.1)"><animate attributeName="r" values="1;2.5;1" dur="4s" repeatCount="indefinite"/></circle></svg>');
+        }
+
+        .page-header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 5rem 0;
+        }
+
+        .content-section-alt {
+            background: #f8f9fa;
+        }
+
+        .icon-box {
+            width: 80px;
+            height: 80px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .icon-box:hover {
+            transform: rotate(360deg);
+        }
+
+        /* Values Section */
+        .value-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+            border: none;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .value-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+
+        /* Team Section */
+        .team-member {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .team-img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 1.5rem;
+            border: 5px solid white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: var(--gradient-primary);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            width: 50%;
+            padding: 0 2rem;
+            box-sizing: border-box;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 3rem;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 3rem;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            transform: rotate(45deg);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::after {
+            left: -10px;
+        }
+
+        .timeline-date {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-link {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .page-header p {
+                font-size: 1.1rem;
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 50px;
+                padding-right: 0;
+            }
+            
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                left: 0;
+                padding-right: 0;
+                padding-left: 50px;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content::after,
+            .timeline-item:nth-child(even) .timeline-content::after {
+                left: -10px;
+                right: auto;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-primary);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">            <a class="navbar-brand" href="index.html">  <img src="assets/OutlwileEnterpriseslogo.png" alt="Logo" width="80" height="80" class="d-inline-block align-text-top">
+</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="portfolio.html">Portfolio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <h1 class="fade-in-up">About Outlwile</h1>
+                <p class="fade-in-up">Learn about our journey, mission, and commitment to excellence in mining maintenance, transportation, supply services, and events management.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Company Story Section -->
+    <section class="content-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="display-4 fw-bold mb-4">Our Story</h2>
+                    <p class="lead">Outlwile Trading Enterprise, established in 2019, was born from a vision to combat unemployment among skilled young black South African youth.</p>
+                    <p>Recognizing the untapped potential within our country, we set out to create a business leveraging our expertise in the construction, cleaning, and transport sectors.</p>
+                    <p>As the global demand for minerals and metals escalates, so does the expectation for industries to contribute to socio-economic development while minimizing environmental impact. In response, we embrace a "Future Smart" approach, integrating sustainability into our operations.</p>
+                    <p>Our Sustainability Strategy, shaped by extensive internal and external engagement, aligns with global sustainability goals, including the UN Sustainable Development Goals.</p>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Mining Industry" class="img-fluid rounded-3 shadow">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision Section -->
+    <section class="content-section-alt">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="value-card h-100">
+                        <div class="icon-box">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3 class="fw-bold mb-3 text-center">Our Mission</h3>
+                        <p>At Outlwile Trading Enterprise (Pty) Ltd, our mission is rooted in delivering unparalleled service excellence and reliability across all aspects of our operations.</p>
+                        <p>We prioritize providing quality services coupled with exceptional customer care, ensuring satisfaction for all stakeholders. Our goal is to foster mutually beneficial and rewarding partnerships among the company's directors, members, employees, and, most importantly, our clients.</p>
+                        <p>We are dedicated to offering comprehensive services, striving to complete projects efficiently and within budget. Upholding strict adherence to quality, health, and safety standards, we prioritize labor equity and encourage harmonious personnel relationships to promote teamwork among our staff.</p>
+                        <p>Committed to making a positive impact on our community and the economy, we continually seek opportunities for improvement and sustainable growth.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="value-card h-100">
+                        <div class="icon-box">
+                            <i class="fas fa-eye"></i>
+                        </div>
+                        <h3 class="fw-bold mb-3 text-center">Our Vision</h3>
+                        <p>At Outlwile Trading Enterprise (Pty) Ltd, our vision is to be acknowledged as the foremost provider of Mining Maintenance Services, Transportation, Supplying Services, and Events Management solutions.</p>
+                        <p>We aspire to establish the benchmark for excellence within our industry, guided by our steadfast commitment to integrity, innovation, and customer satisfaction.</p>
+                        <p>Our aim is to become the hub of excellence, delivering services that catalyze positive, measurable transformations in our customers' business objectives while addressing social challenges and uplifting the communities of the Northern Cape.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="content-section">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-4 fw-bold mb-3">Our Values</h2>
+                    <p class="lead text-muted">The principles that guide everything we do</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="value-card text-center">
+                        <div class="icon-box">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Empowerment</h5>
+                        <p class="text-muted">We are committed to combating unemployment and empowering skilled young black South African youth through meaningful employment and development opportunities.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="value-card text-center">
+                        <div class="icon-box">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Sustainability</h5>
+                        <p class="text-muted">We embrace a "Future Smart" approach, integrating environmental responsibility and sustainable practices into all our operations.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="value-card text-center">
+                        <div class="icon-box">
+                            <i class="fas fa-medal"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Excellence</h5>
+                        <p class="text-muted">We strive for excellence in all we do, delivering quality services that meet and exceed our clients' expectations.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="value-card text-center">
+                        <div class="icon-box">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Integrity</h5>
+                        <p class="text-muted">We conduct our business with honesty, transparency, and ethical practices, building trust with our clients and partners.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="value-card text-center">
+                        <div class="icon-box">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Innovation</h5>
+                        <p class="text-muted">We continuously seek innovative solutions to meet evolving industry challenges and deliver value to our clients.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="value-card text-center">
+                        <div class="icon-box">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h5 class="fw-bold mb-3">Community</h5>
+                        <p class="text-muted">We are dedicated to making a positive impact on our community and contributing to socio-economic development.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- History Timeline -->
+    <section class="content-section-alt">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-4 fw-bold mb-3">Our Journey</h2>
+                    <p class="lead text-muted">Key milestones in our company's history</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2019</div>
+                            <div class="timeline-content">
+                                <h4 class="fw-bold">Company Establishment</h4>
+                                <p>Outlwile Trading Enterprise was founded with a vision to combat unemployment among skilled young black South African youth.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2020</div>
+                            <div class="timeline-content">
+                                <h4 class="fw-bold">First Major Contract</h4>
+                                <p>Secured our first major contract with a leading mining company, establishing our reputation in the industry.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2021</div>
+                            <div class="timeline-content">
+                                <h4 class="fw-bold">Expansion of Services</h4>
+                                <p>Expanded our service offerings to include transportation, supply services, and events management.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2022</div>
+                            <div class="timeline-content">
+                                <h4 class="fw-bold">Sustainability Initiative</h4>
+                                <p>Launched our comprehensive Sustainability Strategy aligned with UN Sustainable Development Goals.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2023</div>
+                            <div class="timeline-content">
+                                <h4 class="fw-bold">Industry Recognition</h4>
+                                <p>Received accreditation from MIBCO and established partnerships with major industry players.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Section 5
+    <section class="content-section">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="display-4 fw-bold mb-3">Our Leadership</h2>
+                    <p class="lead text-muted">The driving force behind Outlwile Trading Enterprise</p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="team-member">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=761&q=80" alt="Mirriam Fonang" class="team-img">
+                        <h4 class="fw-bold">Mirriam Fonang</h4>
+                        <p class="text-primary">Director</p>
+                        <p>With a vision to empower communities and combat unemployment, Mirriam founded Outlwile Trading Enterprise in 2019. Her leadership has guided the company to become a respected provider of mining maintenance, transportation, and supply services.</p>
+                        <div class="d-flex justify-content-center gap-3 mt-3">
+                            <a href="tel:0786921888" class="text-decoration-none text-dark">
+                                <i class="fas fa-phone me-2"></i> 078 692 1888
+                            </a>
+                            <a href="mailto:mirriamfonang10@gmail.com" class="text-decoration-none text-dark">
+                                <i class="fas fa-envelope me-2"></i> Email
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>-->
+
+    <!-- CTA Section -->
+    <section class="content-section-alt">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h2 class="display-5 fw-bold mb-3">Ready to Work With Us?</h2>
+                    <p class="lead text-muted mb-4">Discover how Outlwile Trading Enterprise can meet your mining maintenance, transportation, supply, or events management needs with excellence and reliability.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a href="contact.html" class="btn btn-lg" style="background: var(--gradient-primary); border: none; color: white; padding: 15px 40px; border-radius: 50px; font-weight: 600;">
+                        <i class="fas fa-arrow-right me-2"></i>Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4">
+            <a class="navbar-brand" href="index.html">  <img src="assets/OutlwileEnterpriseslogo.png" alt="Logo" width="60" height="60" class="d-inline-block align-text-top">
+                    <p class="text-white-50">Innovation beyond boundaries. We transform ideas into reality with cutting-edge solutions and unwavering dedication to excellence.</p>
+                    <div class="d-flex gap-3 mt-3">
+                        <a href="#" class="text-white-50" style="font-size: 1.5rem;">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="#" class="text-white-50" style="font-size: 1.5rem;">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-white-50" style="font-size: 1.5rem;">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <h5 class="fw-bold mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="footer-link">Home</a></li>
+                        <li><a href="about.html" class="footer-link">About</a></li>
+                        <li><a href="services.html" class="footer-link">Services</a></li>
+                        <li><a href="portfolio.html" class="footer-link">Portfolio</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2">
+                    <h5 class="fw-bold mb-3">Services</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="services.html" class="footer-link">Mining Maintenance</a></li>
+                        <li><a href="services.html" class="footer-link">Transportation</a></li>
+                        <li><a href="services.html" class="footer-link">Supply Services</a></li>
+                        <li><a href="services.html" class="footer-link">Events Management</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="fw-bold mb-3">Contact Info</h5>
+                    <div class="mb-2">
+                        <i class="fas fa-user me-2"></i>
+                        <span class="text-white-50">Mirriam Fonang (Director)</span>
+                    </div>
+                    <div class="mb-2">
+                        <i class="fas fa-phone me-2"></i>
+                        <span class="text-white-50">078 692 1888</span>
+                    </div>
+                    <div class="mb-2">
+                        <i class="fas fa-envelope me-2"></i>
+                        <span class="text-white-50">mirriamfonang10@gmail.com</span>
+                    </div>
+                    <div class="mb-2">
+                        <i class="fas fa-map-marker-alt me-2"></i>
+                        <span class="text-white-50">7104 Pied Starling Street, Postdene Postmasburg, Northern Cape, South Africa, 8420</span>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: rgba(255,255,255,0.2);">
+            <div class="text-center">
+                <p class="mb-0 text-white-50">&copy; 2023 Outlwile Trading Enterprise. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Navbar background on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+    </script>
+</body>
+</html>
